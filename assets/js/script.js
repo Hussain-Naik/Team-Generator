@@ -1,3 +1,4 @@
 function generatePlayers() {
-    console.log('players')
+    let limit = document.getElementById('playerCount').value;
+    console.log(limit);
 }
