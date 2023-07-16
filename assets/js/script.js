@@ -105,5 +105,6 @@ function uniqueGames() {
 }
 
 function sortArray() {
-    
+    let seq = getPlayerArray().length % 2;
+    console.log(seq);
 }
