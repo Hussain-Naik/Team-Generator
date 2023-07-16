@@ -11,10 +11,7 @@ function generatePlayers() {
 }
 
 function randomizePlayers() {
-    let playersArray = [];
-    for (let i = 0; i < document.getElementsByClassName('players').length ; i++) {
-        playersArray[i] = document.getElementsByClassName('players')[i].value;
-    };
+    let playersArray = getPlayerArray();
 
     for (let i = playersArray.length -1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i+1));
@@ -27,11 +24,7 @@ function randomizePlayers() {
 }
 
 function savePlayers(players) {
-    console.log(players);
-    let playersArray = [];
-    for (let i = 0; i < document.getElementsByClassName('players').length ; i++) {
-        playersArray[i] = document.getElementsByClassName('players')[i].value;
-    };
+    let playersArray = getPlayerArray();
     players = (typeof(players) != 'undefined') ? players : playersArray;
     localStorage.setItem('players' , players);
 }
@@ -45,8 +38,15 @@ function myFunction(element, index) {
     document.getElementsByClassName('players')[index].value = element;
 }
 
+function getPlayerArray() {
+    let playersArray = [];
+    for (let i = 0; i < document.getElementsByClassName('players').length ; i++) {
+        playersArray[i] = document.getElementsByClassName('players')[i].value;
+    };
+    return playersArray;
+}
 function removeSpecific() {
-    const array = [2, 5, 9];
+    let array = [2, 5, 9];
 
     console.log(array);
 
