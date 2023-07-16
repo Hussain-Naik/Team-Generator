@@ -42,18 +42,34 @@ function getPlayerArray() {
     let playersArray = [];
     for (let i = 0; i < document.getElementsByClassName('players').length ; i++) {
         playersArray[i] = document.getElementsByClassName('players')[i].value;
-    };
+    }
     return playersArray;
 }
-function remainingPlayers() {
-    let array = [2, 5, 9];
+function remainingPlayers(used) {
+    let array = [];
 
-    console.log(array);
-
-    let index = array.indexOf(5);
-    if (index > -1) { // only splice array when item is found
-    array.splice(index, 1); // 2nd parameter means remove one item only
+    for (let i = 0; i < getPlayerArray().length ; i++) {
+        array[i] = i+1;
     }
 
+    for (let i = 0; i < used.length; i++) {
+        let index = array.indexOf(used[i]);
+        if (index > -1) { // only splice array when item is found
+            array.splice(index, 1); // 2nd parameter means remove one item only
+        }
+    }
+    
+
     return array;
+}
+
+function uniqueTeams() {
+    let array = [];
+    for (let i = 0; i < getPlayerArray().length - 1; i++) {
+        for (let j = i +1; j < getPlayerArray().length; j++) {
+            array[i] = `${i} + ${j}`;
+        }
+    }
+
+    console.log(array);
 }
