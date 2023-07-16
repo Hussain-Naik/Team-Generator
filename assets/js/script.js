@@ -101,17 +101,39 @@ function uniqueGames(arrayArg) {
     return array;
 }
 
-function sortArray(arrayArg) {
+function multiArray(arrayArg) {
     let object = [];
 
-    if (arrayArg.length % 4 != 0) {
+    if (arrayArg.length % 4 == 2) {
+        for (let i = 0 ; i < arrayArg.length ; i++) {
+            let exclude = [];
+            exclude[0] = arrayArg.length - i;
+            exclude[1] = (i == 5) ? arrayArg.length : arrayArg.length - i -1;
+            let array = uniqueGames(remainingPlayers(exclude, arrayArg));
+            object[i] = array;
+        }
+        return sortArray(object);
+    } else if (arrayArg.length % 4 != 0) {
         for (let i = 0 ; i < arrayArg.length ; i++) {
             let exclude = [];
             exclude[0] = arrayArg.length - i;
             let array = uniqueGames(remainingPlayers(exclude, arrayArg));
             object[i] = array;
         }
-        return object;
+        return sortArray(object);
+    } else {
+        object = uniqueGames(arrayArg);
     }
     return object;
+}
+
+function sortArray(object) {
+    let sort = [];
+    for (let i = 0; i < object[i].length ; i ++) {
+        for (let j = 0; j < object.length ; j++) {
+            let item = object[j][i];
+            sort.push(item);
+        }
+    }
+    return sort;
 }
