@@ -63,13 +63,43 @@ function remainingPlayers(used) {
     return array;
 }
 
-function uniqueTeams() {
+function uniqueTeams(remaining) {
     let array = [];
-    for (let i = 0; i < getPlayerArray().length - 1; i++) {
-        for (let j = i + 1 ; j < getPlayerArray().length ; j++) {
+    let limit = getPlayerArray().length
+    limit = (typeof(remaining) != 'undefined') ? remaining.length : limit;
+    for (let i = 0; i < limit - 1; i++) {
+        for (let j = i + 1 ; j < limit ; j++) {
             let item = [i + 1, j +1];
+            item = (typeof(remaining) != 'undefined') ? [remaining[i], remaining[j]] : item;
             array.push(item);
         }
     }
+    return array;
+}
+
+function allGames() {
+    let array = [];
+    for (let i = 0; i < uniqueTeams().length; i++) {
+        let remaining = uniqueTeams(remainingPlayers(uniqueTeams()[i]));
+        for (let j = 0; j < remaining.length; j++) {
+            let item = `${uniqueTeams()[i]} vs ${remaining[j]}`;
+            array.push(item);
+        }
+    }
+    return array;
+}
+
+function uniqueGames() {
+    let array = allGames();
+    for (let i = 0; i < array.length; i++) {
+        let item = array[i].split(' vs ');
+        let reverse = `${item[1]} vs ${item[0]}`
+        let index = array.indexOf(reverse);
+        if (index > -1) { // only splice array when item is found
+            array.splice(index, 1); // 2nd parameter means remove one item only
+        }
+    }
+    
+
     return array;
 }
