@@ -101,12 +101,17 @@ function uniqueGames(arrayArg) {
     return array;
 }
 
-function sortArray() {
+function sortArray(arrayArg) {
     let object = [];
-    for (i = 0 ; i < getPlayerArray().length; i++) {
-        let array = uniqueTeams(remainingPlayers([getPlayerArray().length - i]));
-        object[i] = array;
+
+    if (arrayArg.length % 4 != 0) {
+        for (let i = 0 ; i < arrayArg.length ; i++) {
+            let exclude = [];
+            exclude[0] = arrayArg.length - i;
+            let array = uniqueGames(remainingPlayers(exclude, arrayArg));
+            object[i] = array;
+        }
+        return object;
     }
-    let seq = getPlayerArray().length % 2;
     return object;
 }
