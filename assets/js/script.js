@@ -66,10 +66,10 @@ function remainingPlayers(used) {
 function uniqueTeams() {
     let array = [];
     for (let i = 0; i < getPlayerArray().length - 1; i++) {
-        for (let j = i +1; j < getPlayerArray().length; j++) {
-            array[i] = `${i + 1} + ${j +1}`;
+        for (let j = i + 1 ; j < getPlayerArray().length ; j++) {
+            let item = [i + 1, j +1];
+            array.push(item);
         }
     }
-
-    console.log(array);
+    return array;
 }
