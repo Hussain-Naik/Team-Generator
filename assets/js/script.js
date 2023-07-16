@@ -45,11 +45,10 @@ function getPlayerArray() {
     }
     return playersArray;
 }
-function remainingPlayers(used) {
+function remainingPlayers(used, arrayArg) {
     let array = [];
-
-    for (let i = 0; i < getPlayerArray().length ; i++) {
-        array[i] = i+1;
+    for (i = 0 ; i < arrayArg.length; i++) {
+        array[i] = arrayArg[i];
     }
 
     for (let i = 0; i < used.length; i++) {
@@ -58,39 +57,37 @@ function remainingPlayers(used) {
             array.splice(index, 1); // 2nd parameter means remove one item only
         }
     }
-    
-
     return array;
 }
 
 function uniqueTeams(remaining) {
     let array = [];
-    let limit = getPlayerArray().length
-    limit = (typeof(remaining) != 'undefined') ? remaining.length : limit;
+    let limit = remaining.length;
     for (let i = 0; i < limit - 1; i++) {
         for (let j = i + 1 ; j < limit ; j++) {
-            let item = [i + 1, j +1];
-            item = (typeof(remaining) != 'undefined') ? [remaining[i], remaining[j]] : item;
+            let item = [remaining[i], remaining[j]];
             array.push(item);
         }
     }
     return array;
 }
 
-function allGames() {
+function allGames(arrayArg) {
     let array = [];
-    for (let i = 0; i < uniqueTeams().length; i++) {
-        let remaining = uniqueTeams(remainingPlayers(uniqueTeams()[i]));
+    
+    let uniqueTeamsArray = uniqueTeams(arrayArg);
+    for (let i = 0; i < uniqueTeamsArray.length; i++) {
+        let remaining = uniqueTeams(remainingPlayers(uniqueTeamsArray[i], arrayArg));
         for (let j = 0; j < remaining.length; j++) {
-            let item = `${uniqueTeams()[i]} vs ${remaining[j]}`;
+            let item = `${uniqueTeamsArray[i]} vs ${remaining[j]}`;
             array.push(item);
         }
     }
     return array;
 }
 
-function uniqueGames() {
-    let array = allGames();
+function uniqueGames(arrayArg) {
+    let array = allGames(arrayArg);
     for (let i = 0; i < array.length; i++) {
         let item = array[i].split(' vs ');
         let reverse = `${item[1]} vs ${item[0]}`
@@ -105,6 +102,11 @@ function uniqueGames() {
 }
 
 function sortArray() {
+    let object = [];
+    for (i = 0 ; i < getPlayerArray().length; i++) {
+        let array = uniqueTeams(remainingPlayers([getPlayerArray().length - i]));
+        object[i] = array;
+    }
     let seq = getPlayerArray().length % 2;
-    console.log(seq);
+    return object;
 }
