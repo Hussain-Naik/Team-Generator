@@ -67,7 +67,7 @@ function uniqueTeams() {
     let array = [];
     for (let i = 0; i < getPlayerArray().length - 1; i++) {
         for (let j = i +1; j < getPlayerArray().length; j++) {
-            array[i] = `${i} + ${j}`;
+            array[i] = `${i + 1} + ${j +1}`;
         }
     }
 
