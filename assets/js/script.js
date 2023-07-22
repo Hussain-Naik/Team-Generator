@@ -105,8 +105,8 @@ function multiArray(arrayArg) {
     let object = [];
 
     if (arrayArg.length == 6) {
-        for (let i = 0 ; i < arrayArg.length -1 ; i++) {
-            let exclude = uniqueTeams(arrayArg);
+        for (let i = 0 ; i < excludeSort6(arrayArg).length ; i++) {
+            let exclude = excludeSort6(arrayArg);
             let array = uniqueGames(remainingPlayers(exclude[i], arrayArg));
             object[i] = array;
         }
@@ -143,8 +143,12 @@ function excludeSort6(arrayArg) {
     for (let i = 0 ; i < arrayArg.length -1 ; i++) {
         let exclude = baseArray[i];
         returnArray.push(baseArray[i]);
-        returnArray.push(uniqueTeams(remainingPlayers(exclude, arrayArg))[0]);
-        returnArray.push(uniqueTeams(remainingPlayers(exclude, arrayArg))[5]);
+        nextExclude = uniqueTeams(remainingPlayers(exclude, arrayArg))[0];
+        returnArray.push(nextExclude);
+        nextArray = remainingPlayers(exclude, arrayArg);
+        returnArray.push(uniqueTeams(remainingPlayers(nextExclude, nextArray))[0]);
     }
+
+
     return returnArray;
 }
