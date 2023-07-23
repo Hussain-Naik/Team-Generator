@@ -205,8 +205,17 @@ function addListener() {
     let buttons = document.getElementsByClassName('outcome');
     for (let button of buttons) {
         button.addEventListener("click", function() {
+            this.setAttribute('class' , 'outcome')
             this.classList.add('win')
-            this.nextElementSibling.classList.add('lose')
+            if (this.nextElementSibling != null) {
+                this.nextElementSibling.setAttribute('class' , 'outcome')
+                this.nextElementSibling.classList.add('lose')
+            } else {
+                this.previousElementSibling.setAttribute('class' , 'outcome')
+                this.previousElementSibling.classList.add('lose')
+            }
+            
+            
         });
     }
 }
