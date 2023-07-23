@@ -1,3 +1,66 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body {
+  margin: .5rem;
+  padding: .25rem;
+}
+
+fieldset {
+  margin: .5rem;
+  padding: .5rem;
+}
+
+input {
+  margin: .25rem;
+}
+
+button {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+#players {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+
+#playerButtons {
+  display: flex;
+  flex-direction: column;
+
+  gap: .2rem;
+}
+
+#displayGames li {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin: .25rem;
+  padding: .25rem;
+}
+
+.outcome {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.win {
+  background-color: #86cb7e;
+}
+
+.lose {
+  background-color: #a94c4c;
+  text-decoration: line-through;
+}
+
 ol {
     list-style-type: none;
     counter-reset: elementcounter;
