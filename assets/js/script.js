@@ -105,13 +105,7 @@ function multiArray(arrayArg) {
     let object = [];
 
     if (arrayArg.length == 6) {
-        for (let i = 0 ; i < excludeSort6(arrayArg).length ; i++) {
-            let exclude = excludeSort6(arrayArg);
-            let array = uniqueGames(remainingPlayers(exclude[i], arrayArg));
-            object[i] = array;
-        }
-        console.log(object);
-        return sortArray(object);
+        return sort6(arrayArg);
     } else if (arrayArg.length % 4 != 0) {
         for (let i = 0 ; i < arrayArg.length ; i++) {
             let exclude = [];
@@ -141,14 +135,32 @@ function excludeSort6(arrayArg) {
     let baseArray = uniqueTeams(arrayArg);
     returnArray = [];
     for (let i = 0 ; i < arrayArg.length -1 ; i++) {
-        let exclude = baseArray[i];
-        returnArray.push(baseArray[i]);
-        nextExclude = uniqueTeams(remainingPlayers(exclude, arrayArg))[0];
-        returnArray.push(nextExclude);
-        nextArray = remainingPlayers(exclude, arrayArg);
-        returnArray.push(uniqueTeams(remainingPlayers(nextExclude, nextArray))[0]);
+        for (let j = 0; j < 3 ; j++) {
+            let jInc = (i % 3 + j > 3) ? 0 : i%3 +j;
+            let exclude = baseArray[i];
+            returnArray.push(baseArray[i]);
+            nextExclude = uniqueTeams(remainingPlayers(exclude, arrayArg))[jInc];
+            returnArray.push(nextExclude);
+            nextArray = remainingPlayers(exclude, arrayArg);
+            returnArray.push(uniqueTeams(remainingPlayers(nextExclude, nextArray))[0]);
+        }
     }
 
 
+    return returnArray;
+}
+
+function sort6(arrayArg) {
+    let array = excludeSort6(arrayArg);
+    let returnArray = []
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 5; j++) {
+            let x = (i*3) + (j*9);
+            returnArray.push(`${array[x]} vs ${array[x+1]}`)
+            returnArray.push(`${array[x]} vs ${array[x+2]}`)
+            returnArray.push(`${array[x+1]} vs ${array[x+2]}`)
+        }
+        
+    }
     return returnArray;
 }
