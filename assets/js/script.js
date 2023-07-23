@@ -3,18 +3,31 @@ function generatePlayers() {
     let players = document.getElementById('playerInput');
     players.innerHTML = "";
     for (let i = 0 ; i < limit; i++) {
-        players.innerHTML += `<label for="player${i+1}">Player ${i+1}</label>
-        <input type="text" id="player${i+1}" class="players">`;
+        players.innerHTML += `<div class="player${i+1}"><label for="player${i+1}">Player ${i+1}</label>
+        <input type="text" id="player${i+1}" class="players"><button onclick="deletePlayer('player${i+1}')">remove</button></div>`;
     }
     let playersButtons = document.getElementById('playerButtons');
     if (playersButtons.children.length == 0) {
-        playersButtons.innerHTML += `<input type="button" value="Save" onclick="savePlayers()">
-        <input type="button" value="Load" onclick="loadPlayers()">
-        <input type="button" value="Randomize" onclick="randomizePlayers()">`;
+        playersButtons.innerHTML += `<button onclick="savePlayers()">save</button>
+        <button onclick="loadPlayers()">load</button>
+        <button onclick="randomizePlayers()">random</button>
+        <button onclick="matchUp()">VS</button>`;
     }
     
 }
 
+function deletePlayer(element) {
+    let item = document.getElementsByClassName(element);
+    item[0].remove();
+    updateLabels();
+}
+
+function updateLabels() {
+    let labels = document.getElementById('players').getElementsByTagName('label');
+    for (let i = 0; i < labels.length; i++) {
+        labels[i].innerHTML = `Player ${i+1}`;
+    }
+}
 function randomizePlayers() {
     let playersArray = getPlayerArray();
 
