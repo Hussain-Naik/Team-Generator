@@ -46,23 +46,28 @@ button {
   margin: .25rem;
   padding: .25rem;
 }
-
+#displayGames li:nth-child(odd) {
+  background-color: #EAF2E3;
+}
+#displayGames li:nth-child(even) {
+  background-color: #EEF0F2;
+}
 .outcome {
   flex-grow: 1;
-  text-align: left;
+  text-align: center;
   padding: 0.5rem 0 0.5rem 0.5rem;
 }
 
 .win {
   background: url('../images/winner.png') no-repeat;
   background-size: contain;
-  background-position: center;
+  background-position: 20%;
 }
 
 .lose {
   background: url('../images/lose.png') no-repeat;
   background-size: contain;
-  background-position: center; 
+  background-position: 90%; 
   text-decoration: line-through;
 }
 
