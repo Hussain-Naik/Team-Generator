@@ -205,10 +205,9 @@ function matchUp(){
 function addListener() {
     let buttons = document.getElementsByClassName('outcome');
     for (let button of buttons) {
-        button.addEventListener("click", decision());
+        button.addEventListener("click", function() {
+            this.classList.add('win')
+            this.nextElementSibling.classList.add('lose')
+        });
     }
-}
-
-function decision() {
-    console.log('hello');
 }
