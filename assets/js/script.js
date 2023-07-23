@@ -4,14 +4,14 @@ function generatePlayers() {
     players.innerHTML = "";
     for (let i = 0 ; i < limit; i++) {
         players.innerHTML += `<div class="player${i+1}"><label for="player${i+1}">Player ${i+1}</label>
-        <input type="text" id="player${i+1}" class="players"><button onclick="deletePlayer('player${i+1}')">remove</button></div>`;
+        <input type="text" id="player${i+1}" class="players"><button onclick="deletePlayer('player${i+1}')"><i class="fa-solid fa-xmark"></i></button></div>`;
     }
     let playersButtons = document.getElementById('playerButtons');
     if (playersButtons.children.length == 0) {
-        playersButtons.innerHTML += `<button onclick="savePlayers()">save</button>
-        <button onclick="loadPlayers()">load</button>
-        <button onclick="randomizePlayers()">random</button>
-        <button onclick="matchUp()">VS</button>`;
+        playersButtons.innerHTML += `<button onclick="savePlayers()"><i class="fa-solid fa-cloud-arrow-up"></i></button>
+        <button onclick="loadPlayers()"><i class="fa-solid fa-cloud-arrow-down"></i></button>
+        <button onclick="randomizePlayers()"><i class="fa-solid fa-shuffle"></i></button>
+        <button onclick="matchUp()"><i class="fa-solid vs"></i></button>`;
     }
     
 }
