@@ -1,13 +1,18 @@
 function generatePlayers() {
     let limit = document.getElementById('playerCount').value;
-    let players = document.getElementById('players');
+    let players = document.getElementById('playerInput');
+    players.innerHTML = "";
     for (let i = 0 ; i < limit; i++) {
         players.innerHTML += `<label for="player${i+1}">Player ${i+1}</label>
         <input type="text" id="player${i+1}" class="players">`;
     }
-    players.innerHTML += `<input type="button" value="Save" onclick="savePlayers()">
-    <input type="button" value="Load" onclick="loadPlayers()">
-    <input type="button" value="Randomize" onclick="randomizePlayers()">`;
+    let playersButtons = document.getElementById('playerButtons');
+    if (playersButtons.children.length == 0) {
+        playersButtons.innerHTML += `<input type="button" value="Save" onclick="savePlayers()">
+        <input type="button" value="Load" onclick="loadPlayers()">
+        <input type="button" value="Randomize" onclick="randomizePlayers()">`;
+    }
+    
 }
 
 function randomizePlayers() {
