@@ -193,7 +193,6 @@ function matchUp(){
     for (let i = 0; i < array.length; i++){
         let item = document.createElement("li");
         let teams = array[i].split(' vs ');
-        console.log(teams);
         let insert = `<div class="outcome" data-type="${teams[0]}">${teams[0]}</div>VS<div class="outcome" data-type="${teams[1]}">${teams[1]}</div>`
         item.innerHTML = insert;
         element.appendChild(item);
