@@ -49,16 +49,20 @@ button {
 
 .outcome {
   flex-grow: 1;
-  text-align: center;
-  padding: .5rem 0;
+  text-align: left;
+  padding: 0.5rem 0 0.5rem 0.5rem;
 }
 
 .win {
-  background-color: #86cb7e;
+  background: url('../images/winner.png') no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 
 .lose {
-  background-color: #a94c4c;
+  background: url('../images/lose.png') no-repeat;
+  background-size: contain;
+  background-position: center; 
   text-decoration: line-through;
 }
 
