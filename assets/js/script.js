@@ -11,7 +11,7 @@ function generatePlayers() {
         playersButtons.innerHTML += `<button onclick="savePlayers()"><i class="fa-solid fa-cloud-arrow-up"></i></button>
         <button onclick="loadPlayers()"><i class="fa-solid fa-cloud-arrow-down"></i></button>
         <button onclick="randomizePlayers()"><i class="fa-solid fa-shuffle"></i></button>
-        <button onclick="matchUp()"><i class="fa-solid vs"></i></button>`;
+        <button onclick="matchUp()"><i class="fa-solid fa-gamepad"></i></button>`;
     }
     
 }
