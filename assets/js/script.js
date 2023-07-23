@@ -194,8 +194,21 @@ function matchUp(){
         let item = document.createElement("li");
         let teams = array[i].split(' vs ');
         console.log(teams);
-        let insert = `<div class="" data-type="${teams[0]}">${teams[0]}</div>VS<div class="" data-type="${teams[1]}">${teams[1]}</div>`
+        let insert = `<div class="outcome" data-type="${teams[0]}">${teams[0]}</div>VS<div class="outcome" data-type="${teams[1]}">${teams[1]}</div>`
         item.innerHTML = insert;
         element.appendChild(item);
     }
+
+    addListener();
+}
+
+function addListener() {
+    let buttons = document.getElementsByClassName('outcome');
+    for (let button of buttons) {
+        button.addEventListener("click", decision());
+    }
+}
+
+function decision() {
+    console.log('hello');
 }
