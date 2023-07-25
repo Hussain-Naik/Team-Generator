@@ -154,7 +154,9 @@ function excludeSort6(arrayArg) {
     returnArray = [];
     for (let i = 0 ; i < arrayArg.length -1 ; i++) {
         for (let j = 0; j < 3 ; j++) {
-            let jInc = (i % 3 + j > 3) ? 0 : i%3 +j;
+            jInc = (i % 2 == 0) ? i + j : j + i%2;
+            jInc = (jInc % 3 == 0) ? 0 : jInc % 3;
+            jInc = (i % 4 == 0) ? j : jInc;
             let exclude = baseArray[i];
             returnArray.push(baseArray[i]);
             nextExclude = uniqueTeams(remainingPlayers(exclude, arrayArg))[jInc];
