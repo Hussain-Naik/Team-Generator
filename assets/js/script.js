@@ -191,6 +191,10 @@ function matchUp(){
     for (let i = 0 ; i < getPlayerArray().length; i++) {
         playerArray[i] = i + 1;
     }
+    let players = document.getElementsByClassName('players');
+    for (let i = 0; i < players.length; i ++) {
+        players[i].disabled = true;
+    }
     let array = multiArray(playerArray);
     for (let i = 0; i < array.length; i++){
         let item = document.createElement("li");
