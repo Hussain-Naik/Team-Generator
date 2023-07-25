@@ -18,11 +18,6 @@ input {
   margin: .25rem;
 }
 
-button {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
 #players {
   display: flex;
   flex-direction: row;
