@@ -191,6 +191,15 @@ function disableInput() {
         players[i].disabled = true;
     }
 }
+
+function removeButtons() {
+    let elements = document.getElementById('players').getElementsByTagName('Button');
+    console.log(elements.length);
+    for (let i = elements.length -1; i > -1 ; i--) {
+        elements[i].remove();
+    }
+}
+
 function matchUp(){
     let element = document.getElementById('displayGames');
     let playerArray = [];
@@ -208,6 +217,7 @@ function matchUp(){
 
     addListener();
     disableInput();
+    removeButtons();
 }
 
 function addListener() {
