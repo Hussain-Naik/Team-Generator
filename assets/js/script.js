@@ -3,15 +3,15 @@ function generatePlayers() {
     let players = document.getElementById('playerInput');
     players.innerHTML = "";
     for (let i = 0 ; i < limit; i++) {
-        players.innerHTML += `<div class="player${i+1}"><label for="player${i+1}">Player ${i+1}</label>
-        <input type="text" id="player${i+1}" class="players toggle_disable"><button class="toggle_disable" onclick="deletePlayer('player${i+1}')"><i class="fa-solid fa-xmark"></i></button></div>`;
+        players.innerHTML += `<div class="player${i+1} insertScore"><label for="player${i+1}">Player ${i+1}</label>
+        <input type="text" id="player${i+1}" class="players toggleDisable"><button class="toggleDisable" onclick="deletePlayer('player${i+1}')"><i class="fa-solid fa-xmark"></i></button></div>`;
     }
     let playersButtons = document.getElementById('playerButtons');
     if (playersButtons.children.length == 0) {
-        playersButtons.innerHTML += `<button class="toggle_disable" onclick="savePlayers()"><i class="fa-solid fa-cloud-arrow-up"></i></button>
-        <button class="toggle_disable" onclick="loadPlayers()"><i class="fa-solid fa-cloud-arrow-down"></i></button>
-        <button class="toggle_disable" onclick="randomizePlayers()"><i class="fa-solid fa-shuffle"></i></button>
-        <button class="toggle_disable" onclick="matchUp()"><i class="fa-solid fa-gamepad"></i></button>`;
+        playersButtons.innerHTML += `<button class="toggleDisable" onclick="savePlayers()"><i class="fa-solid fa-cloud-arrow-up"></i></button>
+        <button class="toggleDisable" onclick="loadPlayers()"><i class="fa-solid fa-cloud-arrow-down"></i></button>
+        <button class="toggleDisable" onclick="randomizePlayers()"><i class="fa-solid fa-shuffle"></i></button>
+        <button class="toggleDisable" onclick="matchUp()"><i class="fa-solid fa-gamepad"></i></button>`;
     }
     
 }
@@ -186,7 +186,7 @@ function sort6(arrayArg) {
 }
 
 function disableInput() {
-    let players = document.getElementsByClassName('toggle_disable');
+    let players = document.getElementsByClassName('toggleDisable');
     for (let i = 0; i < players.length; i ++) {
         players[i].disabled = true;
     }
@@ -197,6 +197,13 @@ function removeButtons() {
     console.log(elements.length);
     for (let i = elements.length -1; i > -1 ; i--) {
         elements[i].remove();
+    }
+}
+
+function addScore() {
+    let scores = document.getElementsByClassName('insertScore');
+    for (let i = 0; i < scores.length ; i++) {
+        scores[i].innerHTML += `<input class="rank" type="number" id="player${i+1}Score" min="0" max="99" value="0" disabled="true">`;
     }
 }
 
@@ -218,6 +225,7 @@ function matchUp(){
     addListener();
     disableInput();
     removeButtons();
+    addScore();
 }
 
 function addListener() {
