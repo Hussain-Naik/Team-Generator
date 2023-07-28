@@ -241,8 +241,26 @@ function addListener() {
                 this.previousElementSibling.setAttribute('class' , 'outcome')
                 this.previousElementSibling.classList.add('lose')
             }
-            
+            updateScore();
             
         });
     }
+}
+
+function updateScore() {
+    resultsArray = returnWinArray();
+    for (let i = 0; i < document.getElementById('playerCount').value ; i++) {
+        let playerNumber = i+1;
+        document.getElementById(`player${i+1}Score`).value = resultsArray.filter(x => x==playerNumber).length
+    }
+
+}
+
+function returnWinArray() {
+    let result = [];
+    let winArray = document.getElementsByClassName('win');
+    for (let i = 0; i < winArray.length ; i++) {
+        result = result.concat(winArray[i].getAttribute('data-type').split(','))
+    }
+    return result;
 }
