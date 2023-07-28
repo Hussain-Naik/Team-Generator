@@ -14,7 +14,7 @@ fieldset {
   padding: .5rem;
 }
 
-input {
+input, select {
   margin: .25rem;
 }
 
