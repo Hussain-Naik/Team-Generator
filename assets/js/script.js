@@ -222,6 +222,13 @@ function matchUp(){
         element.appendChild(item);
     }
 
+    let html = document.getElementsByTagName('section')[0];
+    let insertFieldSet = document.createElement("fieldset");
+    let legend = document.createElement("legend");
+    legend.innerText = 'Continue Playing:';
+    insertFieldSet.appendChild(legend);
+    html.appendChild(insertFieldSet);
+
     addListener();
     disableInput();
     removeButtons();
