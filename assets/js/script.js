@@ -212,8 +212,19 @@ function matchUp(){
     let html = document.getElementsByTagName('section')[0];
     let insertFieldSet = document.createElement("fieldset");
     let legend = document.createElement("legend");
+    let label = document.createElement("label");
+    const select = document.createElement("select");
     legend.innerText = 'Continue Playing:';
+    label.innerText = 'Replay Set/Match';
+    select.setAttribute('id','replayMatch')
+    select.setAttribute('name','replayMatch')
+    label.setAttribute('for','replayMatch')
     insertFieldSet.appendChild(legend);
+    insertFieldSet.appendChild(label);
+    let baseOption = document.createElement('option');
+    baseOption.value = 'Replay Full Set';
+    baseOption.innerText = 'Replay Full Set';
+    select.appendChild(baseOption);
     
     let playerArray = [];
     for (let i = 0 ; i < getPlayerArray().length; i++) {
@@ -221,13 +232,21 @@ function matchUp(){
     }
     let array = multiArray(playerArray);
     for (let i = 0; i < array.length; i++){
+        let option = document.createElement('option');
+        option.value = array[i];
+        option.innerText = array[i];
+        select.appendChild(option);
         let item = document.createElement("li");
         let teams = array[i].split(' vs ');
         let insert = `<div class="outcome" data-type="${teams[0]}">${teams[0]}</div>VS<div class="outcome" data-type="${teams[1]}">${teams[1]}</div>`
         item.innerHTML = insert;
         element.appendChild(item);
     }
-
+    insertFieldSet.appendChild(select);
+    let buttonAdd = document.createElement('button');
+    buttonAdd.innerHTML = `<i class="fa-solid fa-plus"></i>`;
+    buttonAdd.setAttribute('onclick','addGame()');
+    insertFieldSet.appendChild(buttonAdd);
     html.appendChild(insertFieldSet);
 
     addListener();
