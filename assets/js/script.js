@@ -209,6 +209,12 @@ function addScore() {
 
 function matchUp(){
     let element = document.getElementById('displayGames');
+    let html = document.getElementsByTagName('section')[0];
+    let insertFieldSet = document.createElement("fieldset");
+    let legend = document.createElement("legend");
+    legend.innerText = 'Continue Playing:';
+    insertFieldSet.appendChild(legend);
+    
     let playerArray = [];
     for (let i = 0 ; i < getPlayerArray().length; i++) {
         playerArray[i] = i + 1;
@@ -222,11 +228,6 @@ function matchUp(){
         element.appendChild(item);
     }
 
-    let html = document.getElementsByTagName('section')[0];
-    let insertFieldSet = document.createElement("fieldset");
-    let legend = document.createElement("legend");
-    legend.innerText = 'Continue Playing:';
-    insertFieldSet.appendChild(legend);
     html.appendChild(insertFieldSet);
 
     addListener();
