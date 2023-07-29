@@ -71,13 +71,21 @@ input, select {
 }
 
 ol {
-    list-style-type: none;
-    counter-reset: elementcounter;
-    padding-left: 0;
+  list-style-type: none;
+  counter-reset: elementcounter;
+  padding-left: 0;
 }
   
 li:before {
-    content: "Game " counter(elementcounter);
-    counter-increment: elementcounter;
-    font-weight: bold;
+  content: "Game " counter(elementcounter);
+  counter-increment: elementcounter;
+  font-weight: bold;
+}
+
+.champion {
+  background: url('../images/champion.png') no-repeat;
+}
+
+.flop {
+  background: url('../images/champion.png') no-repeat;
 }
