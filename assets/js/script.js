@@ -297,6 +297,7 @@ function addListener() {
                 this.previousElementSibling.classList.add('lose')
             }
             updateScore();
+            updateRank();
             
         });
     }
@@ -311,6 +312,32 @@ function updateScore() {
 
 }
 
+function updateRank() {
+    let scoreArray = document.getElementsByClassName('rank');
+    let rankArray = returnRankArray(scoreArray)
+    for (let i = 0; i < scoreArray.length; i++) {
+        if (scoreArray[i].value == rankArray[0]) {
+            scoreArray[i].classList.add('champion');
+        }else if (scoreArray[i].value == rankArray[rankArray.length -1]) {
+            scoreArray[i].classList.add('flop');
+        }
+        else {
+            scoreArray[i].classList.remove('champion');
+            scoreArray[i].classList.remove('flop');
+        }
+    }
+}
+
+function returnRankArray(array) {
+    let result = [];
+    for (let i = 0 ; i < array.length; i++) {
+        result.push(array[i].value);
+    }
+    result.sort();
+    result.reverse();
+    return result;
+
+}
 function returnWinArray() {
     let result = [];
     let winArray = document.getElementsByClassName('win');
