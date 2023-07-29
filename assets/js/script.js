@@ -255,6 +255,34 @@ function matchUp(){
     addScore();
 }
 
+function addGame() {
+    let playerArray = [];
+    let element = document.getElementById('displayGames');
+    for (let i = 0 ; i < getPlayerArray().length; i++) {
+        playerArray[i] = i + 1;
+    }
+    let option = document.getElementById('replayMatch').value;
+    if (option == 'Replay Full Set') {
+        let array = multiArray(playerArray);
+        for (let i = 0; i < array.length; i++){
+            let item = document.createElement("li");
+            let teams = array[i].split(' vs ');
+            let insert = `<div class="outcome" data-type="${teams[0]}">${teams[0]}</div>VS<div class="outcome" data-type="${teams[1]}">${teams[1]}</div>`
+            item.innerHTML = insert;
+            element.appendChild(item);
+        }
+    }
+    else {
+        let item = document.createElement("li");
+        let teams = option.split(' vs ');
+        let insert = `<div class="outcome" data-type="${teams[0]}">${teams[0]}</div>VS<div class="outcome" data-type="${teams[1]}">${teams[1]}</div>`
+        item.innerHTML = insert;
+        element.appendChild(item);
+    }
+    
+    addListener();
+}
+
 function addListener() {
     let buttons = document.getElementsByClassName('outcome');
     for (let button of buttons) {
