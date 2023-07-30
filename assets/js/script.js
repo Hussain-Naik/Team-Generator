@@ -321,7 +321,10 @@ function updateRank() {
             insertRankIcon(scoreArray[i],'ghost')
         }
         else {
-            scoreArray[i].parentNode.lastChild.remove();
+            if (scoreArray[i].parentNode.children.length > 3) {
+                scoreArray[i].parentNode.lastChild.remove();
+            }
+            
         }
     }
 }
