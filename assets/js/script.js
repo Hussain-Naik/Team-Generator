@@ -194,7 +194,6 @@ function disableInput() {
 
 function removeButtons() {
     let elements = document.getElementById('players').getElementsByTagName('Button');
-    console.log(elements.length);
     for (let i = elements.length -1; i > -1 ; i--) {
         elements[i].remove();
     }
@@ -317,14 +316,21 @@ function updateRank() {
     let rankArray = returnRankArray(scoreArray)
     for (let i = 0; i < scoreArray.length; i++) {
         if (scoreArray[i].value == rankArray[0]) {
-            scoreArray[i].classList.add('champion');
+            insertRankIcon(scoreArray[i],'trophy')
         }else if (scoreArray[i].value == rankArray[rankArray.length -1]) {
-            scoreArray[i].classList.add('flop');
+            insertRankIcon(scoreArray[i],'ghost')
         }
         else {
-            scoreArray[i].classList.remove('champion');
-            scoreArray[i].classList.remove('flop');
+            scoreArray[i].parentNode.lastChild.remove();
         }
+    }
+}
+
+function insertRankIcon(sibling, type) {
+    if (sibling.parentNode.children.length < 4) {
+        let child = document.createElement('i');
+        child.setAttribute('class',`fa-solid fa-${type}`);
+        sibling.parentNode.appendChild(child);
     }
 }
 
