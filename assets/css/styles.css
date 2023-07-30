@@ -82,10 +82,7 @@ li:before {
   font-weight: bold;
 }
 
-.champion {
-  background: url('../images/champion.png') no-repeat;
-}
-
-.flop {
-  background: url('../images/champion.png') no-repeat;
+i {
+  width: 20px;
+  text-align: center;
 }
