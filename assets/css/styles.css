@@ -40,7 +40,7 @@ input, select {
   justify-content: space-around;
   align-items: center;
   margin: .25rem;
-  padding: .25rem;
+  padding-top: .25rem;
 }
 #displayGames li:nth-child(odd) {
   background-color: #EAF2E3;
@@ -88,4 +88,8 @@ li:before {
 i {
   width: 20px;
   text-align: center;
+}
+
+.vs {
+  padding: .5rem .75rem;
 }
