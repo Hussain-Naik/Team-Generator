@@ -202,7 +202,7 @@ function removeButtons() {
 function addScore() {
     let scores = document.getElementsByClassName('insertScore');
     for (let i = 0; i < scores.length ; i++) {
-        scores[i].innerHTML += `<input class="rank" type="number" id="player${i+1}Score" min="0" max="99" value="0" disabled="true">`;
+        scores[i].innerHTML += `<input class="rank" type="number" id="player${i+1}Score" min="0" max="99" disabled="true">`;
     }
 }
 
@@ -312,19 +312,20 @@ function updateScore() {
 }
 
 function updateRank() {
+    
     let scoreArray = document.getElementsByClassName('rank');
     let rankArray = returnRankArray(scoreArray)
     for (let i = 0; i < scoreArray.length; i++) {
+        if (scoreArray[i].parentNode.children.length > 3) {
+            scoreArray[i].parentNode.lastChild.remove();
+        }
+        
         if (scoreArray[i].value == rankArray[0]) {
             insertRankIcon(scoreArray[i],'trophy')
         }else if (scoreArray[i].value == rankArray[rankArray.length -1]) {
             insertRankIcon(scoreArray[i],'ghost')
         }
         else {
-            if (scoreArray[i].parentNode.children.length > 3) {
-                scoreArray[i].parentNode.lastChild.remove();
-            }
-            
         }
     }
 }
