@@ -206,6 +206,12 @@ function addScore() {
     }
 }
 
+function getPlayerName(pairing) {
+    let array = pairing.split(',');
+    let result = '<span>'+document.getElementById(`player${array[0]}`).value + '</span><span>' + document.getElementById(`player${array[1]}`).value + '</span>';
+    return result
+}
+
 function matchUp(){
     let element = document.getElementById('displayGames');
     let html = document.getElementsByTagName('section')[0];
@@ -237,7 +243,7 @@ function matchUp(){
         select.appendChild(option);
         let item = document.createElement("li");
         let teams = array[i].split(' vs ');
-        let insert = `<div class="outcome" data-type="${teams[0]}">${teams[0]}</div><div class="vs">V/S</div><div class="outcome" data-type="${teams[1]}">${teams[1]}</div>`
+        let insert = `<div class="outcome" data-type="${teams[0]}">${getPlayerName(teams[0])}</div><div class="vs">V/S</div><div class="outcome" data-type="${teams[1]}">${getPlayerName(teams[1])}</div>`
         item.innerHTML = insert;
         element.appendChild(item);
     }
