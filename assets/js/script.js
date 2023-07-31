@@ -366,7 +366,9 @@ function returnRankArray(array) {
     for (let i = 0 ; i < array.length; i++) {
         result.push(array[i].value);
     }
-    result.sort();
+    result.sort(function(a, b) {
+        return a - b;
+      });
     result.reverse();
     return result;
 
