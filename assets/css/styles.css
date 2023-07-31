@@ -52,6 +52,7 @@ input, select {
   flex-grow: 1;
   text-align: center;
   padding: 0.5rem 0;
+  display: grid;
 }
 
 li div:first-child {
