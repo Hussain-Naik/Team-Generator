@@ -68,13 +68,13 @@ li div:last-child {
 }
 .win {
   background: url('../images/winner.png') no-repeat;
-  background-size: contain;
+  background-size: auto;
   
 }
 
 .lose {
   background: url('../images/lose.png') no-repeat;
-  background-size: contain;
+  background-size: auto;
   text-decoration: line-through;
 }
 
