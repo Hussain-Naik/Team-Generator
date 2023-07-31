@@ -288,12 +288,12 @@ function addListener() {
         button.addEventListener("click", function() {
             this.setAttribute('class' , 'outcome')
             this.classList.add('win')
-            if (this.nextElementSibling != null) {
-                this.nextElementSibling.setAttribute('class' , 'outcome')
-                this.nextElementSibling.classList.add('lose')
+            if (this.nextElementSibling == null) {
+                this.parentNode.firstChild.setAttribute('class' , 'outcome')
+                this.parentNode.firstChild.classList.add('lose')
             } else {
-                this.previousElementSibling.setAttribute('class' , 'outcome')
-                this.previousElementSibling.classList.add('lose')
+                this.parentNode.lastChild.setAttribute('class' , 'outcome')
+                this.parentNode.lastChild.classList.add('lose')
             }
             updateScore();
             updateRank();
