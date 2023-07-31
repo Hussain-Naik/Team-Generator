@@ -4,7 +4,7 @@ function generatePlayers() {
     players.innerHTML = "";
     for (let i = 0 ; i < limit; i++) {
         players.innerHTML += `<div class="player${i+1} insertScore"><label for="player${i+1}">Player ${i+1}</label>
-        <input type="text" id="player${i+1}" class="players toggleDisable"><button class="toggleDisable" onclick="deletePlayer('player${i+1}')"><i class="fa-solid fa-xmark"></i></button></div>`;
+        <input type="text" id="player${i+1}" placeholder="Player ${i+1}" class="players toggleDisable"><button class="toggleDisable" onclick="deletePlayer('player${i+1}')"><i class="fa-solid fa-xmark"></i></button></div>`;
     }
     let playersButtons = document.getElementById('playerButtons');
     if (playersButtons.children.length == 0) {
@@ -202,7 +202,14 @@ function removeButtons() {
 function addScore() {
     let scores = document.getElementsByClassName('insertScore');
     for (let i = 0; i < scores.length ; i++) {
-        scores[i].innerHTML += `<input class="rank" type="number" id="player${i+1}Score" min="0" max="99" disabled="true">`;
+        let element = document.createElement('input');
+        element.setAttribute('class', 'rank');
+        element.setAttribute('type', 'number');
+        element.setAttribute('id', `player${i+1}Score`);
+        element.setAttribute('disabled', 'true');
+        element.setAttribute('min', '0');
+        element.setAttribute('max', '99');
+        scores[i].appendChild(element);
     }
 }
 
@@ -212,7 +219,17 @@ function getPlayerName(pairing) {
     return result
 }
 
+function setDefaultNames() {
+    let input = document.getElementsByClassName('players');
+    for (let i = 0; i < input.length; i++) {
+        if (input[i].value.length == 0){
+            input[i].value = input[i].getAttribute('placeholder');
+        }
+    }
+}
+
 function matchUp(){
+    setDefaultNames();
     let element = document.getElementById('displayGames');
     let html = document.getElementsByTagName('section')[0];
     let insertFieldSet = document.createElement("fieldset");
@@ -272,7 +289,7 @@ function addGame() {
         for (let i = 0; i < array.length; i++){
             let item = document.createElement("li");
             let teams = array[i].split(' vs ');
-            let insert = `<div class="outcome" data-type="${teams[0]}">${teams[0]}</div>VS<div class="outcome" data-type="${teams[1]}">${teams[1]}</div>`
+            let insert = `<div class="outcome" data-type="${teams[0]}">${getPlayerName(teams[0])}</div><div class="vs">V/S</div><div class="outcome" data-type="${teams[1]}">${getPlayerName(teams[1])}</div>`
             item.innerHTML = insert;
             element.appendChild(item);
         }
@@ -280,7 +297,7 @@ function addGame() {
     else {
         let item = document.createElement("li");
         let teams = option.split(' vs ');
-        let insert = `<div class="outcome" data-type="${teams[0]}">${teams[0]}</div>VS<div class="outcome" data-type="${teams[1]}">${teams[1]}</div>`
+        let insert = `<div class="outcome" data-type="${teams[0]}">${getPlayerName(teams[0])}</div><div class="vs">V/S</div><div class="outcome" data-type="${teams[1]}">${getPlayerName(teams[1])}</div>`
         item.innerHTML = insert;
         element.appendChild(item);
     }
