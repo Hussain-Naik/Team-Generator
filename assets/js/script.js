@@ -323,6 +323,18 @@ function addListener() {
             
         });
     }
+
+    let resetButton = document.getElementsByClassName('vs');
+    for (let button of resetButton) {
+        button.addEventListener("click", function() {
+            this.parentNode.lastChild.setAttribute('class' , 'outcome')
+            this.parentNode.firstChild.setAttribute('class' , 'outcome')
+            
+            updateScore();
+            updateRank();
+            
+        });
+    }
 }
 
 function updateScore() {
