@@ -25,7 +25,7 @@ input, select {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 #players {
@@ -39,7 +39,7 @@ input, select {
 #playerButtons {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   width: 100%;
 }
