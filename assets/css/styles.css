@@ -28,12 +28,9 @@ input, select {
   justify-content: center;
 }
 
-.insertScore input {
-  width: 150px;
-}
 #players {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   gap: .25rem;
@@ -41,9 +38,10 @@ input, select {
 
 #playerButtons {
   display: flex;
-  flex-direction: column;
-
-  gap: .5rem;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
 }
 
 #displayGames li {
