@@ -237,15 +237,15 @@ function matchUp(){
     let label = document.createElement("label");
     const select = document.createElement("select");
     legend.innerText = 'Continue Playing:';
-    label.innerText = 'Replay Set/Match';
+    label.innerText = 'Replay Options:';
     select.setAttribute('id','replayMatch')
     select.setAttribute('name','replayMatch')
     label.setAttribute('for','replayMatch')
     insertFieldSet.appendChild(legend);
     insertFieldSet.appendChild(label);
     let baseOption = document.createElement('option');
-    baseOption.value = 'Replay Full Set';
-    baseOption.innerText = 'Replay Full Set';
+    baseOption.value = 'Full Set';
+    baseOption.innerText = 'Full Set';
     select.appendChild(baseOption);
     
     let playerArray = [];
