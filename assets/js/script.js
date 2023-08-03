@@ -3,7 +3,7 @@ function generatePlayers() {
     let players = document.getElementById('playerInput');
     players.innerHTML = "";
     for (let i = 0 ; i < limit; i++) {
-        players.innerHTML += `<div class="player${i+1} insertScore"><label for="player${i+1}">Player ${i+1}</label>
+        players.innerHTML += `<div class="player${i+1} insertScore"><label for="player${i+1}">${i+1}: </label>
         <input type="text" id="player${i+1}" placeholder="Player ${i+1}" class="players toggleDisable"><button class="toggleDisable" onclick="deletePlayer('player${i+1}')"><i class="fa-solid fa-xmark"></i></button></div>`;
     }
     let playersButtons = document.getElementById('playerButtons');
