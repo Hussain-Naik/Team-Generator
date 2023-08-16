@@ -284,7 +284,7 @@ function addGame() {
         playerArray[i] = i + 1;
     }
     let option = document.getElementById('replayMatch').value;
-    if (option == 'Replay Full Set') {
+    if (option == 'Full Set') {
         let array = multiArray(playerArray);
         for (let i = 0; i < array.length; i++){
             let item = document.createElement("li");
