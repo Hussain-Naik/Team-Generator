@@ -1,4 +1,4 @@
-function generatePlayers() {
+function generatePlayers(check) {
     let limit = document.getElementById('playerCount').value;
     let players = document.getElementById('playerInput');
     players.innerHTML = "";
@@ -9,11 +9,27 @@ function generatePlayers() {
     let playersButtons = document.getElementById('playerButtons');
     if (playersButtons.children.length == 0) {
         playersButtons.innerHTML += `<button class="toggleDisable" onclick="savePlayers()"><i class="fa-solid fa-cloud-arrow-up"></i></button>
-        <button class="toggleDisable" onclick="loadPlayers()"><i class="fa-solid fa-cloud-arrow-down"></i></button>
+        
         <button class="toggleDisable" onclick="randomizePlayers()"><i class="fa-solid fa-shuffle"></i></button>
         <button class="toggleDisable" onclick="matchUp()"><i class="fa-solid fa-gamepad"></i></button>`;
     }
+    if (check == true) {
+        newGameID();
+    }
     
+}
+
+function returnDateID(){
+    let date = new Date();
+    let dateVariable = `${date.getFullYear()}-${date.getMonth() +1}-${date.getDate()}`;
+    return dateVariable
+}
+
+function newGameID(){
+    let dateVariable = returnDateID()
+    const gameSession = {id: dateVariable};
+
+    localStorage.setItem(dateVariable, JSON.stringify(gameSession));
 }
 
 function deletePlayer(element) {
@@ -42,13 +58,19 @@ function randomizePlayers() {
 }
 
 function savePlayers(players) {
+    let dateVariable = returnDateID()
     let playersArray = getPlayerArray();
-    players = (typeof(players) != 'undefined') ? players : playersArray;
-    localStorage.setItem('players' , players);
+    playersList = (typeof(players) != 'undefined') ? players : playersArray;
+    let object = JSON.parse(localStorage.getItem(dateVariable));
+    object.players = playersList;
+    localStorage.setItem(object.id , JSON.stringify(object));
 }
 
 function loadPlayers() {
-    let playersArray = localStorage.getItem('players').split(',');
+    generatePlayers(false)
+    let dateVariable = returnDateID()
+    let object = JSON.parse(localStorage.getItem(dateVariable));
+    let playersArray = object.players;
     playersArray.forEach(myFunction);
 }
 
