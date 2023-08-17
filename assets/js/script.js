@@ -493,3 +493,7 @@ function returnWinArray() {
     }
     return result;
 }
+
+function allTimeRanking() {
+    
+}
