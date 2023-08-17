@@ -26,8 +26,13 @@ function returnDateID(){
 }
 
 function newGameID(){
+    let limit = document.getElementById('playerCount').value;
     let dateVariable = returnDateID()
-    const gameSession = {id: dateVariable};
+    const gameSession = {
+        id: dateVariable,
+        players: limit,
+        addGames: new Array()
+    };
 
     localStorage.setItem(dateVariable, JSON.stringify(gameSession));
 }
@@ -62,16 +67,26 @@ function savePlayers(players) {
     let playersArray = getPlayerArray();
     playersList = (typeof(players) != 'undefined') ? players : playersArray;
     let object = JSON.parse(localStorage.getItem(dateVariable));
-    object.players = playersList;
+    object.playerNames = playersList;
     localStorage.setItem(object.id , JSON.stringify(object));
 }
 
-function loadPlayers() {
-    generatePlayers(false)
+function loadPlayers(check) {
     let dateVariable = returnDateID()
     let object = JSON.parse(localStorage.getItem(dateVariable));
-    let playersArray = object.players;
+    document.getElementById('playerCount').value = object.players
+    generatePlayers(false)
+    let playersArray = object.playerNames;
     playersArray.forEach(myFunction);
+    if (check == true) {
+        matchUp()
+        object.addGames.forEach(myAddGameFunction)
+    }
+    
+}
+
+function myAddGameFunction(element) {
+    addGame(element)
 }
 
 function myFunction(element, index) {
@@ -299,13 +314,16 @@ function matchUp(){
     addScore();
 }
 
-function addGame() {
+function addGame(option) {
+    let dateVariable = returnDateID()
+    let object = JSON.parse(localStorage.getItem(dateVariable));
     let playerArray = [];
     let element = document.getElementById('displayGames');
     for (let i = 0 ; i < getPlayerArray().length; i++) {
         playerArray[i] = i + 1;
     }
-    let option = document.getElementById('replayMatch').value;
+    option = (typeof(option) != 'undefined') ? option : document.getElementById('replayMatch').value;
+    object.addGames.push(option);
     if (option == 'Full Set') {
         let array = multiArray(playerArray);
         for (let i = 0; i < array.length; i++){
@@ -323,7 +341,7 @@ function addGame() {
         item.innerHTML = insert;
         element.appendChild(item);
     }
-    
+    localStorage.setItem(object.id , JSON.stringify(object));
     addListener();
 }
 
