@@ -314,7 +314,7 @@ function matchUp(){
         let item = document.createElement("li");
         item.setAttribute('class' , i)
         let teams = array[i].split(' vs ');
-        let insert = `<div class="outcome" data-type="${teams[0]}">${getPlayerName(teams[0])}</div><div class="vs">V/S</div><div class="outcome" data-type="${teams[1]}">${getPlayerName(teams[1])}</div>`
+        let insert = `<div class="outcome" data-type="${teams[0]}">${getPlayerName(teams[0])}</div><div class="vs">V/S</div><div class="outcome" data-type="${teams[1]}">${getPlayerName(teams[1])}</div>`;
         item.innerHTML = insert;
         element.appendChild(item);
     }
@@ -494,6 +494,47 @@ function returnWinArray() {
     return result;
 }
 
+function allStorage() {
+
+    var values = [],
+        keys = Object.keys(localStorage),
+        i = keys.length;
+
+    while ( i-- ) {
+        values.push( JSON.parse(localStorage.getItem(keys[i])) );
+    }
+
+    return values;
+}
+
 function allTimeRanking() {
-    
+    document.getElementById('playerInput').innerHTML = '';
+    document.getElementById('playerButtons').innerHTML = '';
+    const html = document.getElementById('displayGames');
+    html.innerHTML = '';
+    let lastElem = document.getElementById('Matches').nextElementSibling
+    if (lastElem != null) {
+        document.getElementById('Matches').nextElementSibling.remove();
+    }
+    const allData = allStorage();
+    for (let i = 0; i < allData.length; i++) {
+        let playerNames = allData[i].playerNames
+        let item = document.createElement("li");
+        item.setAttribute('class' , 'table')
+        let table = document.createElement("table");
+        let tableHeadings = `<tr><th>Players</th>`
+        for (let j = 0; j < playerNames.length; j++) {
+            tableHeadings += `<td>${allData[i].playerNames[j]}</td>`;
+        }
+        tableHeadings += `</tr>`;
+        tableHeadings += `<tr><th>Wins</th>`
+        for (let j = 0; j < allData[i].playerNames.length; j++) {
+            tableHeadings += `<td class="${allData[i].playerNames[j]}">${allData[i].leaderBoard[j]}</td>`
+        }
+        tableHeadings += `</tr>`
+        table.innerHTML = tableHeadings;
+        let insert = `<div>${allData[i].playerNames}</div><div>${allData[i].leaderBoard}</div>`;
+        item.appendChild(table);
+        html.appendChild(item);
+    }
 }
