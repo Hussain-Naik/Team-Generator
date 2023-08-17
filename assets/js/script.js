@@ -339,8 +339,11 @@ function addGame(option) {
     for (let i = 0 ; i < getPlayerArray().length; i++) {
         playerArray[i] = i + 1;
     }
+    check = (typeof(option) != 'undefined') ? true : false;
     option = (typeof(option) != 'undefined') ? option : document.getElementById('replayMatch').value;
-    object.addGames.push(option);
+    if (check == false) {
+        object.addGames.push(option);
+    }
     let offset = Number(document.getElementById('displayGames').lastChild.getAttribute('class')) + 1;
     if (option == 'Full Set') {
         let array = multiArray(playerArray);
