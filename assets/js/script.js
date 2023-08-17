@@ -31,7 +31,8 @@ function newGameID(){
     const gameSession = {
         id: dateVariable,
         players: limit,
-        addGames: new Array()
+        addGames: new Array(),
+        winSequence: new Array()
     };
 
     localStorage.setItem(dateVariable, JSON.stringify(gameSession));
@@ -81,6 +82,21 @@ function loadPlayers(check) {
     if (check == true) {
         matchUp()
         object.addGames.forEach(myAddGameFunction)
+        object.winSequence.forEach(reloadGameResults)
+        updateScore();
+        updateRank();
+    }
+    
+}
+function reloadGameResults(element, index) {
+    let game = document.getElementById('displayGames').children[index]
+    if (element == 1){
+        game.firstChild.classList.add('lose')
+        game.lastChild.classList.add('win')
+    }
+    else if (element == 0) {
+        game.firstChild.classList.add('win')
+        game.lastChild.classList.add('lose')
     }
     
 }
@@ -296,6 +312,7 @@ function matchUp(){
         option.innerText = array[i];
         select.appendChild(option);
         let item = document.createElement("li");
+        item.setAttribute('class' , i)
         let teams = array[i].split(' vs ');
         let insert = `<div class="outcome" data-type="${teams[0]}">${getPlayerName(teams[0])}</div><div class="vs">V/S</div><div class="outcome" data-type="${teams[1]}">${getPlayerName(teams[1])}</div>`
         item.innerHTML = insert;
@@ -324,10 +341,12 @@ function addGame(option) {
     }
     option = (typeof(option) != 'undefined') ? option : document.getElementById('replayMatch').value;
     object.addGames.push(option);
+    let offset = Number(document.getElementById('displayGames').lastChild.getAttribute('class')) + 1;
     if (option == 'Full Set') {
         let array = multiArray(playerArray);
         for (let i = 0; i < array.length; i++){
             let item = document.createElement("li");
+            item.setAttribute('class' , offset + i)
             let teams = array[i].split(' vs ');
             let insert = `<div class="outcome" data-type="${teams[0]}">${getPlayerName(teams[0])}</div><div class="vs">V/S</div><div class="outcome" data-type="${teams[1]}">${getPlayerName(teams[1])}</div>`
             item.innerHTML = insert;
@@ -336,6 +355,7 @@ function addGame(option) {
     }
     else {
         let item = document.createElement("li");
+        item.setAttribute('class' , offset + i)
         let teams = option.split(' vs ');
         let insert = `<div class="outcome" data-type="${teams[0]}">${getPlayerName(teams[0])}</div><div class="vs">V/S</div><div class="outcome" data-type="${teams[1]}">${getPlayerName(teams[1])}</div>`
         item.innerHTML = insert;
@@ -349,15 +369,32 @@ function addListener() {
     let buttons = document.getElementsByClassName('outcome');
     for (let button of buttons) {
         button.addEventListener("click", function() {
+            let dateVariable = returnDateID()
+            let object = JSON.parse(localStorage.getItem(dateVariable));
+            let index = Number(this.parentNode.getAttribute('class'))
             this.setAttribute('class' , 'outcome')
             this.classList.add('win')
             if (this.nextElementSibling == null) {
+                if (object.winSequence[index] == 'undefined'){
+                    object.winSequence.push(1)
+                }
+                else {
+                    object.winSequence[index] = 1
+                }
+                
                 this.parentNode.firstChild.setAttribute('class' , 'outcome')
                 this.parentNode.firstChild.classList.add('lose')
             } else {
+                if (object.winSequence[index] == 'undefined'){
+                    object.winSequence.push(0)
+                }
+                else {
+                    object.winSequence[index] = 0
+                }
                 this.parentNode.lastChild.setAttribute('class' , 'outcome')
                 this.parentNode.lastChild.classList.add('lose')
             }
+            localStorage.setItem(object.id , JSON.stringify(object));
             updateScore();
             updateRank();
             
@@ -367,9 +404,15 @@ function addListener() {
     let resetButton = document.getElementsByClassName('vs');
     for (let button of resetButton) {
         button.addEventListener("click", function() {
+            let dateVariable = returnDateID()
+            let object = JSON.parse(localStorage.getItem(dateVariable));
+            let index = Number(this.parentNode.getAttribute('class'))
             this.parentNode.lastChild.setAttribute('class' , 'outcome')
             this.parentNode.firstChild.setAttribute('class' , 'outcome')
-            
+            if (object.winSequence[index] != 'undefined'){
+                object.winSequence[index] = 3;
+            }
+            localStorage.setItem(object.id , JSON.stringify(object));
             updateScore();
             updateRank();
             
@@ -378,12 +421,26 @@ function addListener() {
 }
 
 function updateScore() {
+    
     resultsArray = returnWinArray();
     for (let i = 0; i < document.getElementById('playerCount').value ; i++) {
         let playerNumber = i+1;
         document.getElementById(`player${i+1}Score`).value = resultsArray.filter(x => x==playerNumber).length
     }
+    leaderBoard()
 
+}
+
+function leaderBoard() {
+    let dateVariable = returnDateID()
+    let object = JSON.parse(localStorage.getItem(dateVariable));
+    let scoreArray = document.getElementsByClassName('rank');
+    let tempArray = [];
+    for (let i = 0; i < scoreArray.length; i++){
+        tempArray.push(Number(scoreArray[i].value));
+    }
+    object.leaderBoard = tempArray
+    localStorage.setItem(object.id , JSON.stringify(object));
 }
 
 function updateRank() {
