@@ -73,6 +73,10 @@ function savePlayers(players) {
 }
 
 function loadPlayers(check) {
+    document.getElementById('playerInput').innerHTML = '';
+    document.getElementById('playerButtons').innerHTML = '';
+    const html = document.getElementById('displayGames');
+    html.innerHTML = '';
     let dateVariable = returnDateID()
     let object = JSON.parse(localStorage.getItem(dateVariable));
     document.getElementById('playerCount').value = object.players
@@ -517,24 +521,38 @@ function allTimeRanking() {
         document.getElementById('Matches').nextElementSibling.remove();
     }
     const allData = allStorage();
+    let leaderBoardArray = [];
     for (let i = 0; i < allData.length; i++) {
-        let playerNames = allData[i].playerNames
+        let playerNames = allData[i].playerNames;
+        leaderBoardArray = leaderBoardArray.concat(playerNames);
         let item = document.createElement("li");
         item.setAttribute('class' , 'table')
         let table = document.createElement("table");
-        let tableHeadings = `<tr><th>Players</th>`
+        let tableHeadings = ''
         for (let j = 0; j < playerNames.length; j++) {
-            tableHeadings += `<td>${allData[i].playerNames[j]}</td>`;
+            tableHeadings += `<tr><td>${allData[i].playerNames[j]}</td>
+            <td class="${allData[i].playerNames[j]}">${allData[i].leaderBoard[j]}</td>
+            </tr>`;
         }
-        tableHeadings += `</tr>`;
-        tableHeadings += `<tr><th>Wins</th>`
-        for (let j = 0; j < allData[i].playerNames.length; j++) {
-            tableHeadings += `<td class="${allData[i].playerNames[j]}">${allData[i].leaderBoard[j]}</td>`
-        }
-        tableHeadings += `</tr>`
         table.innerHTML = tableHeadings;
-        let insert = `<div>${allData[i].playerNames}</div><div>${allData[i].leaderBoard}</div>`;
+        let insert = `<div>${allData[i].id}</div>`;
+        item.innerHTML = insert
         item.appendChild(table);
         html.appendChild(item);
+    }
+    const allPlayers = [...new Set(leaderBoardArray)];
+    for (let i = 0; i < allPlayers.length; i++) {
+        let playerStatsArray = document.getElementsByClassName(allPlayers[i])
+        let playerScore = 0
+        for (let j = 0; j < playerStatsArray.length; j++){
+            playerScore += Number(playerStatsArray[j].innerHTML)
+        }
+        let stats = document.getElementById('playerInput');
+        let insert = `
+        <div class="insertScore">
+        <label for="${allPlayers[i]}">${allPlayers[i]} :</label>
+        <input class="rank" type="number" id="${allPlayers[i]}" value="${playerScore}" disabled="true">
+        </div>`
+        stats.innerHTML += insert
     }
 }

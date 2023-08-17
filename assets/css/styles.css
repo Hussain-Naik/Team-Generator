@@ -53,6 +53,15 @@ input, select {
   margin: .25rem;
   padding-top: .25rem;
 }
+#displayGames li.table {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: .25rem;
+  padding-top: .25rem;
+}
 #displayGames li:nth-child(odd) {
   background-color: #EAF2E3;
 }
@@ -66,13 +75,13 @@ input, select {
   display: grid;
 }
 
-li div:first-child {
+li .outcome:first-child {
   text-align: right;
   padding-right: 10%;
   background-position: 20%;
 }
 
-li div:last-child {
+li .outcome:last-child {
   text-align: left;
   padding-left: 10%;
   background-position: 90%; 
@@ -116,4 +125,20 @@ i {
 
 button {
   font-size: 1rem;
+}
+
+table, th, td {
+  border: 1px solid;
+}
+
+td {
+  padding: 0 1rem;
+}
+
+table {
+  margin-bottom: 1rem;
+}
+.insertScore label {
+  width: 80px;
+  text-align: right;
 }
