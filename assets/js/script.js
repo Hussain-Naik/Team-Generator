@@ -21,6 +21,68 @@ function generatePlayers(check) {
 
 function clearLocalStorage() {
     localStorage.clear()
+    let session1 = {
+        id: "2023-8-16",
+        players: 5,
+        addGames: ["Full Set"],
+        winSequence: [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0],
+        playerNames: ["Hussain", "Ahmed", "Tauseef", "Mujahid", "Anwar"],
+        leaderBoard: [13, 10, 14, 5, 2]
+    }
+
+    let session2 = {
+        id: "2023-8-9",
+        players: 5,
+        addGames: ["Full Set"],
+        winSequence: [0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, null, null, null, null, null, null, 0],
+        playerNames: ['Ahmed', 'Anwar', 'Mujahid', 'Tauseef', 'Hussain'],
+        leaderBoard: [10, 8, 4, 6, 6]
+    }
+
+    let session3 = {
+        id: "2023-8-2",
+        players: 6,
+        addGames: [],
+        winSequence: [1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
+        playerNames: ['Ahmed', 'Mudasir', 'Tauseef', 'Hussain', 'Mujahid', 'Anwar'],
+        leaderBoard: [5, 2, 7, 11, 4, 7]
+    }
+    
+    let session4 = {
+        id: "2023-7-19",
+        players: 4,
+        addGames: ['Full Set', 'Full Set', 'Full Set', 'Full Set'],
+        winSequence: [0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1],
+        playerNames: ['Anwar', 'Hussain', 'Mujahid', 'Tauseef'],
+        leaderBoard: [5, 12, 4, 7]
+    }
+
+    let sesssion5 = {
+        id: "2023-7-12",
+        players: 6,
+        addGames: [],
+        winSequence: [1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0],
+        playerNames: ['Hussain', 'Mujahid', 'Tauseef', 'Anwar', 'Ahmed', 'Mudassir'],
+        leaderBoard: [6, 1, 10, 7, 8, 6]
+    }
+
+    let session6 = {
+        id: "2023-7-5",
+        players: 5,
+        addGames: ['1,4 vs 2,5', '1,2 vs 3,5'],
+        winSequence: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1],
+        playerNames: ['Mujahid', 'Tauseef', 'Hussain', 'Ahmed', 'Anwar'],
+        leaderBoard: [6, 10, 9, 3, 6]
+    }
+
+    let session7 = {
+        id: "2023-6-21",
+        players: 5,
+        addGames: [],
+        winSequence: [1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1],
+        playerNames: ['Ahmed', 'Anwar', 'Hussain', 'Tauseef', 'Mujahid'],
+        leaderBoard: [5, 5, 8, 8, 6]
+    }
 }
 function returnDateID() {
     let date = new Date();
@@ -365,7 +427,7 @@ function addGame(option) {
     }
     else {
         let item = document.createElement("li");
-        item.setAttribute('class' , offset + i)
+        item.setAttribute('class' , offset)
         let teams = option.split(' vs ');
         let insert = `<div class="outcome" data-type="${teams[0]}">${getPlayerName(teams[0])}</div><div class="vs">V/S</div><div class="outcome" data-type="${teams[1]}">${getPlayerName(teams[1])}</div>`
         item.innerHTML = insert;
