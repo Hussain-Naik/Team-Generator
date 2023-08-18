@@ -19,7 +19,10 @@ function generatePlayers(check) {
     
 }
 
-function returnDateID(){
+function clearLocalStorage() {
+    localStorage.clear()
+}
+function returnDateID() {
     let date = new Date();
     let dateVariable = `${date.getFullYear()}-${date.getMonth() +1}-${date.getDate()}`;
     return dateVariable
