@@ -22,7 +22,7 @@ function generatePlayers(check) {
 function clearLocalStorage() {
     localStorage.clear()
     let session1 = {
-        id: "2023-8-16",
+        id: "2023-08-16",
         players: 5,
         addGames: ["Full Set"],
         winSequence: [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0],
@@ -31,7 +31,7 @@ function clearLocalStorage() {
     }
 
     let session2 = {
-        id: "2023-8-9",
+        id: "2023-08-09",
         players: 5,
         addGames: ["Full Set"],
         winSequence: [0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0],
@@ -40,7 +40,7 @@ function clearLocalStorage() {
     }
 
     let session3 = {
-        id: "2023-8-2",
+        id: "2023-08-02",
         players: 6,
         addGames: [],
         winSequence: [1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
@@ -49,7 +49,7 @@ function clearLocalStorage() {
     }
     
     let session4 = {
-        id: "2023-7-19",
+        id: "2023-07-19",
         players: 4,
         addGames: ['Full Set', 'Full Set', 'Full Set', 'Full Set'],
         winSequence: [0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1],
@@ -58,7 +58,7 @@ function clearLocalStorage() {
     }
 
     let session5 = {
-        id: "2023-7-12",
+        id: "2023-07-12",
         players: 6,
         addGames: [],
         winSequence: [1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0],
@@ -67,7 +67,7 @@ function clearLocalStorage() {
     }
 
     let session6 = {
-        id: "2023-7-5",
+        id: "2023-07-05",
         players: 5,
         addGames: ['1,4 vs 2,5', '1,2 vs 3,5'],
         winSequence: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1],
@@ -76,7 +76,7 @@ function clearLocalStorage() {
     }
 
     let session7 = {
-        id: "2023-6-21",
+        id: "2023-06-21",
         players: 5,
         addGames: [],
         winSequence: [1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1],
@@ -93,8 +93,12 @@ function clearLocalStorage() {
     localStorage.setItem(session7.id, JSON.stringify(session7));
 }
 function returnDateID() {
-    let date = new Date();
-    let dateVariable = `${date.getFullYear()}-${date.getMonth() +1}-${date.getDate()}`;
+    let now = new Date();
+    let month = now.getMonth() +1;
+    month = (month < 10) ? `0${month}` : month;
+    let date = now.getDate();
+    date = (date < 10) ? `0${date}` : date;
+    let dateVariable = `${now.getFullYear()}-${month}-${date}`;
     return dateVariable
 }
 
@@ -574,7 +578,7 @@ function returnWinArray() {
 function allStorage() {
 
     var values = [],
-        keys = Object.keys(localStorage),
+        keys = Object.keys(localStorage).sort(),
         i = keys.length;
 
     while ( i-- ) {
