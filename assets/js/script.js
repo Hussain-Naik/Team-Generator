@@ -34,7 +34,7 @@ function clearLocalStorage() {
         id: "2023-8-9",
         players: 5,
         addGames: ["Full Set"],
-        winSequence: [0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, null, null, null, null, null, null, 0],
+        winSequence: [0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0],
         playerNames: ['Ahmed', 'Anwar', 'Mujahid', 'Tauseef', 'Hussain'],
         leaderBoard: [10, 8, 4, 6, 6]
     }
@@ -57,7 +57,7 @@ function clearLocalStorage() {
         leaderBoard: [5, 12, 4, 7]
     }
 
-    let sesssion5 = {
+    let session5 = {
         id: "2023-7-12",
         players: 6,
         addGames: [],
@@ -83,6 +83,14 @@ function clearLocalStorage() {
         playerNames: ['Ahmed', 'Anwar', 'Hussain', 'Tauseef', 'Mujahid'],
         leaderBoard: [5, 5, 8, 8, 6]
     }
+
+    localStorage.setItem(session1.id, JSON.stringify(session1));
+    localStorage.setItem(session2.id, JSON.stringify(session2));
+    localStorage.setItem(session3.id, JSON.stringify(session3));
+    localStorage.setItem(session4.id, JSON.stringify(session4));
+    localStorage.setItem(session5.id, JSON.stringify(session5));
+    localStorage.setItem(session6.id, JSON.stringify(session6));
+    localStorage.setItem(session7.id, JSON.stringify(session7));
 }
 function returnDateID() {
     let date = new Date();
