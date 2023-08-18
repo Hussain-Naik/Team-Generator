@@ -552,7 +552,7 @@ function allTimeRanking() {
         }
         let stats = document.getElementById('playerInput');
         let insert = `
-        <div class="insertScore">
+        <div class="allTimeRank">
         <label for="${allPlayers[i]}">${allPlayers[i]} :</label>
         <input class="rank" type="number" id="${allPlayers[i]}" value="${playerScore}" disabled="true">
         </div>`

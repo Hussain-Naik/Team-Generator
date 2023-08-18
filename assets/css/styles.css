@@ -138,7 +138,10 @@ td {
 table {
   margin-bottom: 1rem;
 }
-.insertScore label {
-  width: 80px;
-  text-align: right;
+
+.allTimeRank {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
 }
