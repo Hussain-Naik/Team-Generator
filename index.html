@@ -8,7 +8,7 @@
     <meta name="keywords" content="Team Fixtaures, Team Generator, Tournament">
     <meta name="author" content="Hussain Naik">
 
-    <link href="assets/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <!-- <link href="assets/images/favicon.ico" rel="shortcut icon" type="image/x-icon"> -->
     <link rel="stylesheet" href="assets/css/styles.css">
     <title>Team Generator</title>
 </head>
@@ -20,11 +20,12 @@
         <section>
             <fieldset>
                 <legend>Number Of Players:</legend>
-                <label for="playerCount">Select Number of Players:</label>
+                <label for="playerCount">Players:</label>
                 <input class="toggle_disable" type="number" id="playerCount" min="4" max="20" value="4">
                 <button class="toggleDisable" onclick="generatePlayers(true)"><i class="fa-solid fa-scroll"></i></button>
                 <button onclick="loadPlayers(true)"><i class="fa-solid fa-cloud-arrow-down"></i></button>
                 <button onclick="allTimeRanking()"><i class="fa-solid fa-ranking-star"></i></i></button>
+                <button onclick="clearLocalStorage()"><i class="fa-regular fa-file"></i></i></button>
             </fieldset>
             <fieldset id="players">
                 <legend>Players:</legend>
