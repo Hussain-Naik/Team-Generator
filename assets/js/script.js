@@ -44,7 +44,7 @@ function clearLocalStorage() {
         players: 6,
         addGames: [],
         winSequence: [1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
-        playerNames: ['Ahmed', 'Mudasir', 'Tauseef', 'Hussain', 'Mujahid', 'Anwar'],
+        playerNames: ['Ahmed', 'Mudassir', 'Tauseef', 'Hussain', 'Mujahid', 'Anwar'],
         leaderBoard: [5, 2, 7, 11, 4, 7]
     }
     
