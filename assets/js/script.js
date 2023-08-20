@@ -478,11 +478,15 @@ function addListener() {
                 this.parentNode.lastChild.setAttribute('class' , 'outcome')
                 this.parentNode.lastChild.classList.add('lose')
             }
-            object.winSequence.forEach(function(value){
-                if (value == null || value == "") {
-                  value = 3;
+            
+            
+            for (let i = 0; i < object.winSequence.length; i++) {
+                
+                if (object.winSequence[i] == null || object.winSequence[i] == 'undefined') {
+                    object.winSequence[i] = 3
                 }
-            })
+                
+            }
             localStorage.setItem(object.id , JSON.stringify(object));
             updateScore();
             updateRank();
